@@ -2,12 +2,12 @@ package week1;
 
 import java.util.Arrays;
 
-public class WeightedQuickUnion {
+public class WeightedQUPathCompression {
 
     int[] id;
     int[] size;
 
-    public WeightedQuickUnion(int N) {
+    public WeightedQUPathCompression(int N){
         id = new int[N];
         size = new int[N];
         for (int i = 0; i < N; i++) {
@@ -25,6 +25,7 @@ public class WeightedQuickUnion {
     private int find(int p) {
         validate(p);
         while (id[p] != p) {
+            id[p] = id[id[p]];  // This is the first variant to reduce the tree size. Connecting a node to great grandparent.
             p = id[p];
         }
         return p;
@@ -54,11 +55,11 @@ public class WeightedQuickUnion {
 
     @Override
     public String toString() {
-        return "QuickUnion [id=" + Arrays.toString(id) + "]";
+        return "WeightedQUPathCompression [id=" + Arrays.toString(id) + "]";
     }
 
     public static void main(String[] args) {
-        WeightedQuickUnion uf = new WeightedQuickUnion(10);
+        WeightedQUPathCompression uf = new WeightedQUPathCompression(10);
 
         /* Quick Find algorithm */
         // Component 1
@@ -81,3 +82,4 @@ public class WeightedQuickUnion {
     }
 
 }
+
